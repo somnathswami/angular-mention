@@ -21,26 +21,26 @@ import { getCaretCoordinates } from './caret-coords';
         max-height: 300px;
         overflow: auto;
       }
-    `,`
+    `, `
       [hidden] {
         display: none;
       }
-    `,`
-      li.active {
-        background-color: #f7f7f9;
+    `, `
+      .active {
+        background-color: #ff0000;
       }
     `],
   template: `
     <ng-template #defaultItemTemplate let-item="item">
       {{item[labelKey]}}
     </ng-template>
-    <ul #list [hidden]="hidden" class="dropdown-menu scrollable-menu">
-        <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">
-            <a class="dropdown-item" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">
-              <ng-template [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{'item':item}"></ng-template>
-            </a>
-        </li>
-    </ul>
+    <mat-list role="list" #list [hidden]="hidden" class="dropdown-menu scrollable-menu">
+      <mat-list-item role="listitem" *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">
+      <a class="dropdown-item" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">
+      <ng-template [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{'item':item}"></ng-template>
+    </a>
+      </mat-list-item>
+  </mat-list>
     `
 })
 export class MentionListComponent implements OnInit {

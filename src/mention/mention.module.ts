@@ -3,10 +3,11 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { MentionDirective } from './mention.directive';
 import { MentionListComponent } from './mention-list.component';
-
+import {UiMaterialComponents} from '../app/ui-material-components';
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        UiMaterialComponents
     ],
     exports: [
         MentionDirective,

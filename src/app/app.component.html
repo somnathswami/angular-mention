@@ -6,15 +6,20 @@ and content editable fields. Try entering some @names below.</p>
 
 <h3>Minimal</h3>
 <input [mention]="items" class="form-control" type="text">
+<h3>hello</h3>
+<mat-form-field class="example-full-width">
+    <input matInput  [mention]="items">
+  </mat-form-field>
+<!-- <input matInput placeholder= "type somethig start with" [mention]="items" > -->
 
-<h3>Textarea</h3>
+<!-- <h3>Textarea</h3>
 <textarea [mention]="items" class="form-control" cols="60" rows="4"></textarea>
 
 <h3>Content Editable</h3>
 <div [mention]="items" class="form-control" contenteditable="true" style="border:1px lightgrey solid;min-height:88px"></div>
 
 <h3>Embedded Editor</h3>
-<app-demo-tinymce></app-demo-tinymce>
+<app-demo-tinymce></app-demo-tinymce> -->
 
 <!-- other demos that can be enabled -->
 <!-- <app-demo-async></app-demo-async> -->
