@@ -9,7 +9,7 @@ and content editable fields. Not fully browser tested and comes without warranty
 
 To install and start the demo application:
 
-    git clone https://github.com/dmacfarlane/angular-mentions.git
+    git clone https://github.com/somnathswami/angular-mention.git
     cd angular-mentions
     npm install
     ng serve
@@ -18,7 +18,7 @@ To install and start the demo application:
 
 Add the package as a dependency to your project using:
 
-    npm install --save angular-mentions
+    npm install --save angular-material-mentions
 
 Add the CSS to your index.html:
 
