@@ -34,13 +34,21 @@ import { getCaretCoordinates } from './caret-coords';
     <ng-template #defaultItemTemplate let-item="item">
       {{item[labelKey]}}
     </ng-template>
-    <mat-list role="list" #list [hidden]="hidden" class="dropdown-menu scrollable-menu">
-      <mat-list-item role="listitem" *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">
-      <a class="dropdown-item" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">
-      <ng-template [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{'item':item}"></ng-template>
-    </a>
-      </mat-list-item>
-  </mat-list>
+    <div #list [hidden]="hidden" class="scrollable-menu">
+    <mat-card  >
+    <mat-card-content>
+    <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">
+    <a class="dropdown-item" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">
+    <ng-template [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{'item':item}"></ng-template>
+  </a>
+    </mat-list-item>
+    </mat-list>
+     </mat-card-content>
+  </mat-card>
+    </div>
+   
+ 
     `
 })
 export class MentionListComponent implements OnInit {
@@ -96,12 +104,13 @@ export class MentionListComponent implements OnInit {
   }
 
   activateNextItem() {
+    debugger;
     // adjust scrollable-menu offset if the next item is out of view
     let listEl: HTMLElement = this.list.nativeElement;
     let activeEl = listEl.getElementsByClassName('active').item(0);
     if (activeEl) {
       let nextLiEl: HTMLElement = <HTMLElement> activeEl.nextSibling;
-      if (nextLiEl && nextLiEl.nodeName == "LI") {
+      if (nextLiEl && nextLiEl.nodeName == "MAT-LIST-ITEM") {
         let nextLiRect: ClientRect = nextLiEl.getBoundingClientRect();
         if (nextLiRect.bottom > listEl.getBoundingClientRect().bottom) {
           listEl.scrollTop = nextLiEl.offsetTop + nextLiRect.height - listEl.clientHeight;
@@ -118,7 +127,7 @@ export class MentionListComponent implements OnInit {
     let activeEl = listEl.getElementsByClassName('active').item(0);
     if (activeEl) {
       let prevLiEl: HTMLElement = <HTMLElement> activeEl.previousSibling;
-      if (prevLiEl && prevLiEl.nodeName == "LI") {
+      if (prevLiEl && prevLiEl.nodeName == "MAT-LIST-ITEM") {
         let prevLiRect: ClientRect = prevLiEl.getBoundingClientRect();
         if (prevLiRect.top < listEl.getBoundingClientRect().top) {
           listEl.scrollTop = prevLiEl.offsetTop;
