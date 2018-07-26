@@ -1,6 +1,6 @@
 {
   "name": "angular-material-mentions",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Angular mentions for text fields.",
   "keywords": [
     "angular",
@@ -59,15 +59,14 @@
     "ts-node": "~3.3.0",
     "tslint": "~4.5.0",
     "typescript": "2.7.2",
-    "zone.js": "^0.8.26"
-  },
-  "files": [
-    "mention"
-  ],
-  "dependencies": {
+    "zone.js": "^0.8.26",
     "@angular/animations": "6.0.9",
     "@angular/cdk": "^6.4.0",
     "@angular/material": "^6.4.0",
     "hammerjs": "^2.0.8"
-  }
+  },
+  "files": [
+    "mention"
+  ],
+  "dependencies": {}
 }

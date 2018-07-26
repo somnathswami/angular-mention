@@ -41,7 +41,23 @@ import { MatMenuTrigger } from '@angular/material';
           margin-top: 10px;
       }
     `],
-    templateUrl: './mention-list.component.html',
+    template: `<ng-template #defaultItemTemplate let-item="item">
+    {{item[labelKey]}}
+  </ng-template>
+  <div #list [hidden]="hidden" class="scrollable-menu">
+  <mat-card>
+    <mat-card-content>
+            <mat-list role="list">
+                <mat-list-item role="listitem" *ngFor="let item of items; let i = index" [class.active]="activeIndex==i" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">
+                        <a class="dropdown-item" >
+                        <ng-template [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{'item':item}"></ng-template>
+                        </a>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+</div>
+`,
 })
 export class MentionListComponent implements OnInit {
   @Input() labelKey: string = 'label';
