@@ -5,6 +5,7 @@ import {
 
 import { isInputOrTextAreaElement, getContentEditableCaretCoords } from './mention-utils';
 import { getCaretCoordinates } from './caret-coords';
+import { MatMenuTrigger } from '@angular/material';
 
 /**
  * Angular 2 Mentions.
@@ -27,29 +28,20 @@ import { getCaretCoordinates } from './caret-coords';
       }
     `, `
       .active {
-        background-color: #ff0000;
+        background-color: rgba(0,0,0,.05);
+      }
+      `, `
+      .mat-card {
+          transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+          display: block;
+          position: relative;
+          padding: 5px;
+          border-radius: 2px;
+          border: 1px solid #dedcdc;
+          margin-top: 10px;
       }
     `],
-  template: `
-    <ng-template #defaultItemTemplate let-item="item">
-      {{item[labelKey]}}
-    </ng-template>
-    <div #list [hidden]="hidden" class="scrollable-menu">
-    <mat-card  >
-    <mat-card-content>
-    <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">
-    <a class="dropdown-item" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">
-    <ng-template [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{'item':item}"></ng-template>
-  </a>
-    </mat-list-item>
-    </mat-list>
-     </mat-card-content>
-  </mat-card>
-    </div>
-   
- 
-    `
+    templateUrl: './mention-list.component.html',
 })
 export class MentionListComponent implements OnInit {
   @Input() labelKey: string = 'label';
@@ -57,10 +49,14 @@ export class MentionListComponent implements OnInit {
   @Output() itemClick = new EventEmitter();
   @ViewChild('list') list: ElementRef;
   @ViewChild('defaultItemTemplate') defaultItemTemplate: TemplateRef<any>;
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
   items = [];
   activeIndex: number = 0;
   hidden: boolean = false;
-  constructor(private _element: ElementRef) {}
+  constructor(private _element: ElementRef) {
+    // this.trigger.openMenu();
+  }
 
   ngOnInit() {
     if (!this.itemTemplate) {
