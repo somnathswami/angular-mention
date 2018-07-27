@@ -25,5 +25,5 @@ export class AppComponent {
       {'label': 'zokavalskia4', 'avtar': 'someavtar'},
       {'label': 'dell5', 'avtar': 'someavtar'},
       {'label': 'lenevo6', 'avtar': 'someavtar'}
-    ]
+    ];
 }

@@ -32,19 +32,21 @@ import { MatMenuTrigger } from '@angular/material';
       }
       `, `
       .mat-card {
-          transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
-          display: block;
-          position: relative;
           padding: 5px;
           border-radius: 2px;
-          border: 1px solid #dedcdc;
           margin-top: 10px;
       }
+      `, `
+      mat-list {
+        flex-grow: 1;
+        height: 300px;
+        overflow: auto;
+    }
     `],
     template: `<ng-template #defaultItemTemplate let-item="item">
     {{item[labelKey]}}
   </ng-template>
-  <div #list [hidden]="hidden" class="scrollable-menu">
+  <div #list [hidden]="hidden">
   <mat-card>
     <mat-card-content>
             <mat-list role="list">
@@ -125,7 +127,7 @@ export class MentionListComponent implements OnInit {
       if (nextLiEl && nextLiEl.nodeName == "MAT-LIST-ITEM") {
         let nextLiRect: ClientRect = nextLiEl.getBoundingClientRect();
         if (nextLiRect.bottom > listEl.getBoundingClientRect().bottom) {
-          listEl.scrollTop = nextLiEl.offsetTop + nextLiRect.height - listEl.clientHeight;
+          listEl.getElementsByTagName('mat-list').item(0).scrollTop = nextLiEl.offsetTop + nextLiRect.height - listEl.clientHeight;
         }
       }
     }
@@ -142,7 +144,7 @@ export class MentionListComponent implements OnInit {
       if (prevLiEl && prevLiEl.nodeName == "MAT-LIST-ITEM") {
         let prevLiRect: ClientRect = prevLiEl.getBoundingClientRect();
         if (prevLiRect.top < listEl.getBoundingClientRect().top) {
-          listEl.scrollTop = prevLiEl.offsetTop;
+          listEl.getElementsByTagName('mat-list').item(0).scrollTop = prevLiEl.offsetTop;
         }
       }
     }

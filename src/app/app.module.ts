@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './demo-async/in-memory-data.service';
@@ -11,7 +12,7 @@ import { DemoAsyncComponent } from './demo-async/demo-async.component';
 import { DemoOptionsComponent } from './demo-options/demo-options.component';
 import { DemoTemplateComponent } from './demo-template/demo-template.component';
 import { DemoTinymceComponent } from './demo-tinymce/demo-tinymce.component';
-  import {UiMaterialComponents} from './ui-material-components';
+import { UiMaterialComponents } from './ui-material-components';
 
 @NgModule({
   imports: [
